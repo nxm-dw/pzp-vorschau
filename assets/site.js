@@ -1,15 +1,23 @@
 // PZP — Navigation. Ohne Bibliotheken, ohne Fremdaufrufe.
 (() => {
-  // Untermenü Leistungen: Disclosure-Muster, Escape und Klick außerhalb schließen
+  // Megamenü Leistungen: öffnet beim Hover (Maus) und per Knopf (Tastatur, Touch).
+  // Escape, Klick außerhalb und Fokus außerhalb schließen.
   const knopf = document.querySelector(".mega-knopf");
   const mega = document.getElementById("mega");
   if (knopf && mega) {
     const li = knopf.closest("li");
+    let timer;
     const setze = (offen) => {
+      clearTimeout(timer);
       knopf.setAttribute("aria-expanded", String(offen));
       mega.hidden = !offen;
+      li.classList.toggle("ist-offen", offen);
     };
     knopf.addEventListener("click", () => setze(mega.hidden));
+    if (matchMedia("(hover: hover)").matches) {
+      li.addEventListener("mouseenter", () => { clearTimeout(timer); timer = setTimeout(() => setze(true), 90); });
+      li.addEventListener("mouseleave", () => { clearTimeout(timer); timer = setTimeout(() => setze(false), 220); });
+    }
     document.addEventListener("keydown", (ev) => {
       if (ev.key === "Escape" && !mega.hidden) { setze(false); knopf.focus(); }
     });
