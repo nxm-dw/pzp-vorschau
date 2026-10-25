@@ -165,6 +165,23 @@ a:hover > .pf { transform: translateX(3px); }
 .held-voll .ctas { justify-content: center; }
 .held-voll h1 { margin-bottom: 28px; }
 .held-cap { position: relative; margin: 48px auto 0; font-size: .9rem; text-align: right; }
+@media (max-width: 1100px) {
+  .held-voll.held-start { background: var(--dunkel); padding-top: 0; }
+  .held-start .held-foto { position: relative; inset: auto; z-index: 0; aspect-ratio: 16 / 7; margin-bottom: 36px; }
+  .held-start .held-foto::after { background: linear-gradient(180deg, transparent 55%, var(--dunkel) 100%); }
+}
+@media (max-width: 640px) { .held-start .held-foto { aspect-ratio: 4 / 3; margin-bottom: 24px; } }
+@media (min-width: 1101px) {
+  .held-start { background: var(--dunkel); min-height: 0; padding: 56px 0 36px; }
+  .held-start h1 { font-size: clamp(3rem, 1.2rem + 3.4vw, 4.6rem); margin-bottom: 22px; }
+  .held-start .held-foto { left: 36%; }
+  .held-start .held-foto::after { background: linear-gradient(90deg, var(--dunkel) 0%, rgba(16,16,17,.7) 10%, rgba(16,16,17,.1) 32%, rgba(16,16,17,.05) 100%), linear-gradient(180deg, rgba(16,16,17,.35) 0%, transparent 25%, transparent 62%, rgba(16,16,17,.92) 100%); }
+  .held-start .held-voll-in { text-align: left; align-items: flex-start; }
+  .held-start .held-voll-in > * { max-width: 600px; }
+  .held-start .held-cap { margin-top: 28px; }
+  .held-start .lead { margin-left: 0; max-width: 540px; }
+  .held-start .ctas { justify-content: flex-start; }
+}
 .held-unter { min-height: min(70vh, 680px); }
 .held-unter .held-voll-in { text-align: left; align-items: flex-start; }
 .held-unter .lead { margin-left: 0; }
@@ -271,9 +288,11 @@ a.hl-w:hover { text-decoration: underline; }
 .wkarte.w2 { grid-column: 1 / 5; grid-row: 3; }
 .wkarte.w3 { grid-column: 5 / 9; grid-row: 3; }
 .w-raute { display: block; margin-bottom: 22px; }
-.w-raute path { fill: none; stroke: var(--dunkel); stroke-width: 2; stroke-linejoin: round; transition: fill .25s; }
-.w-raute path:last-child { fill: var(--gelb); }
-.wkarte:hover .w-raute path:first-child { fill: var(--gelb); }
+.w-raute path { fill: none; stroke-width: 2.8; stroke-linecap: butt; stroke-linejoin: miter; }
+.w-raute .g { stroke: #a7a8ad; transition: stroke .25s; }
+.w-raute .y { stroke: var(--gelb-tief, #f5d800); }
+.w-raute .h { stroke: var(--weiss); stroke-width: 5.4; }
+.wkarte:hover .w-raute .g { stroke: var(--dunkel); }
 .wkarte h3 { font-size: clamp(1.3rem, 1.1rem + .5vw, 1.6rem); letter-spacing: -.03em; margin: 0 0 10px; }
 .wkarte p { margin: 0; max-width: 36em; }
 .w-mehr { grid-column: 9 / 13; grid-row: 3; position: relative; display: flex; flex-direction: column; justify-content: flex-end; min-height: 220px; padding: clamp(26px, 2.6vw, 36px); border-radius: var(--r-gross); background: var(--gelb); color: var(--dunkel); text-decoration: none; transition: background-color .25s; }
