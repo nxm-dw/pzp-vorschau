@@ -300,9 +300,10 @@ a.hl-w:hover { text-decoration: underline; }
 .mehr summary::before { content: "+"; display: grid; place-items: center; width: 28px; height: 28px; border-radius: 50%; background: var(--dunkel); color: var(--weiss); font-size: 1.2rem; line-height: 1; }
 .dunkel .mehr summary::before { background: var(--gelb); color: var(--dunkel); }
 .mehr[open] summary::before { content: "−"; }
-.aufzaehlung { margin: 10px 0 0; }
-.aufzaehlung li { position: relative; padding: 8px 0 8px 22px; border-top: 1px solid var(--trenn); }
-.aufzaehlung li::before { content: ""; position: absolute; left: 0; top: 1.05em; width: 10px; height: 3px; background: currentColor; }
+.aufzaehlung { display: grid; gap: 10px; margin: 8px 0 4px; }
+.aufzaehlung li { position: relative; padding-left: 26px; font-size: .97rem; line-height: 1.45; text-wrap: pretty; }
+.aufzaehlung li::before { content: ""; position: absolute; left: 3px; top: .42em; width: 9px; height: 9px; background: var(--gelb); outline: 1.5px solid var(--dunkel); transform: rotate(45deg); }
+.dunkel .aufzaehlung li::before { outline-color: var(--gelb); }
 
 /* Textseiten */
 .text { max-width: 820px; padding-top: 56px; padding-bottom: 96px; }
@@ -312,26 +313,37 @@ a.hl-w:hover { text-decoration: underline; }
 .text .brot { margin-bottom: 0; }
 .hinweis-box { border-left: 6px solid var(--gelb); background: var(--flaeche); padding: 16px 20px; border-radius: 0 10px 10px 0; }
 
-/* ---------------------------------------------------------------- Fuß */
-.fuss { background: var(--tief); padding: 72px 0 40px; font-size: .98rem; }
-.fuss-oben { display: flex; justify-content: space-between; align-items: center; gap: 24px; margin-bottom: 40px; }
-.fuss-logo { height: 52px; width: auto; }
-.sozial { display: flex; gap: 12px; }
-.sozial a { display: grid; place-items: center; width: 48px; height: 48px; border-radius: 50%; border: 1.5px solid var(--weiss); transition: background-color .15s, color .15s; }
-.sozial a:hover { background: var(--gelb); color: var(--dunkel); border-color: var(--gelb); }
-.fuss-karte { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 32px; background: var(--hell); color: var(--dunkel); border-radius: var(--r-gross); padding: clamp(28px, 3.5vw, 48px); --fokus: var(--dunkel); }
-.fuss-karte p { margin: 0; }
-.fuss-karte a { text-decoration: none; }
-.fuss-karte a:hover { text-decoration: underline; }
-.fuss-h { font-size: 1rem; font-weight: 600; letter-spacing: 0; margin-bottom: 10px; }
+/* ---------------------------------------------------------------- Fuß: Bento aus vier Kacheln */
+.fuss { background: var(--tief); padding: clamp(56px, 7vw, 96px) 0 32px; font-size: .98rem; }
+.fuss-bento { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); grid-template-rows: minmax(260px, auto) auto; gap: var(--gap); }
+.fb { border-radius: var(--r-gross); padding: clamp(28px, 3vw, 40px); margin: 0; }
+.fb-gelb { grid-column: 1 / 6; grid-row: 1 / 3; display: flex; flex-direction: column; background: var(--gelb); color: var(--dunkel); --fokus: var(--dunkel); }
+.fb-h { font-size: clamp(2rem, 1.4rem + 1.8vw, 3.2rem); letter-spacing: -.04em; margin-bottom: 32px; }
+.fb-wege { margin: 0 0 auto; }
+.fb-wege div { padding: 14px 0; border-top: 2px solid var(--dunkel); }
+.fb-wege div:last-child { border-bottom: 2px solid var(--dunkel); }
+.fb-wege dt { font-size: .95rem; }
+.fb-wege dd { margin: 0; }
+.fb-wege a { font-size: clamp(1.35rem, 1rem + 1vw, 1.9rem); font-weight: 600; letter-spacing: -.025em; text-decoration: none; overflow-wrap: anywhere; }
+.fb-wege a:hover { text-decoration: underline; text-decoration-thickness: 3px; }
+.fb-gelb .ctas { margin-top: 28px; }
+.fb-bild { grid-column: 6 / 9; grid-row: 1; position: relative; overflow: hidden; padding: 0; min-height: 260px; }
+.fb-bild img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.fb-info { grid-column: 9 / 13; grid-row: 1; display: grid; gap: 24px; align-content: space-between; background: var(--flaeche); }
+.fb-links { grid-column: 6 / 13; grid-row: 2; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; background: var(--flaeche); }
+.fuss-h { font-size: 1rem; font-weight: 600; letter-spacing: 0; margin-bottom: 10px; color: var(--gelb); }
+.fb-links a { display: inline-block; padding: 4px 0; text-decoration: none; }
+.fb-links a:hover { text-decoration: underline; text-decoration-color: var(--gelb); text-decoration-thickness: 2px; }
 .zeiten { margin: 0; }
 .zeiten div { padding: 2px 0 6px; }
 .zeiten dt { font-weight: 600; }
 .zeiten dd { margin: 0; font-variant-numeric: tabular-nums; }
-.fuss-raster { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 32px; margin-top: 48px; }
-.fuss-raster a { text-decoration: none; display: inline-block; padding: 4px 0; }
-.fuss-raster a:hover { text-decoration: underline; color: var(--gelb); }
-.fuss-unten { margin: 48px 0 0; padding-top: 24px; border-top: 1px solid var(--linie); font-size: .92rem; text-align: center; }
+.fuss-unten { display: flex; align-items: center; justify-content: space-between; gap: 24px; margin-top: 40px; padding-top: 28px; border-top: 1px solid var(--linie); font-size: .92rem; }
+.fuss-unten p { margin: 0; }
+.fuss-logo { height: 40px; width: auto; }
+.sozial { display: flex; gap: 12px; }
+.sozial a { display: grid; place-items: center; width: 48px; height: 48px; border-radius: 50%; border: 1.5px solid var(--weiss); transition: background-color .15s, color .15s; }
+.sozial a:hover { background: var(--gelb); color: var(--dunkel); border-color: var(--gelb); }
 
 /* ---------------------------------------------------------------- Breiten */
 @media (max-width: 1500px) { .kopf-tel { display: none; } }
@@ -348,7 +360,10 @@ a.hl-w:hover { text-decoration: underline; }
   .kopf-zeile .textlink { justify-self: start; }
   .kinder.n8 .karte-gelb { grid-column: auto; }
   .phasen { grid-template-columns: minmax(0, 1fr); }
-  .fuss-karte { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .fb-gelb { grid-column: 1 / 7; grid-row: 1; }
+  .fb-bild { grid-column: 7 / 13; }
+  .fb-info { grid-column: 1 / 13; grid-row: 2; grid-template-columns: repeat(2, minmax(0, 1fr)); align-content: start; }
+  .fb-links { grid-column: 1 / 13; grid-row: 3; }
 }
 @media (max-width: 900px) {
   .karten, .split, .phase-kopf, .kinder, .kinder.n2, .kinder.n4 { grid-template-columns: minmax(0, 1fr); }
@@ -374,7 +389,11 @@ a.hl-w:hover { text-decoration: underline; }
   .held-voll .ctas { justify-content: flex-start; }
   .held-voll .lead { margin-left: 0; }
   .held-cap { text-align: left; margin-top: 32px; }
-  .mosaik, .partnerkarten, .wkarten, .kinder, .kinder.n2, .kinder.n4, .fuss-karte, .fuss-raster { grid-template-columns: minmax(0, 1fr); }
+  .mosaik, .partnerkarten, .wkarten, .kinder, .kinder.n2, .kinder.n4 { grid-template-columns: minmax(0, 1fr); }
+  .fuss-bento { grid-template-columns: minmax(0, 1fr); grid-template-rows: none; }
+  .fb-gelb, .fb-bild, .fb-info, .fb-links { grid-column: 1; grid-row: auto; }
+  .fb-info, .fb-links { grid-template-columns: minmax(0, 1fr); }
+  .fb-bild { min-height: 0; aspect-ratio: 4 / 3; }
   .b-zusammen { grid-template-columns: minmax(0, 1fr); }
   .b-c, .b-d { aspect-ratio: 4 / 3; min-height: 0; }
   .mosaik { grid-auto-rows: auto; }
@@ -389,8 +408,8 @@ a.hl-w:hover { text-decoration: underline; }
   .karte-klein { padding-top: 30px; }
   .karte-klein .eck-pfeil { left: auto; right: 22px; top: 22px; }
   .pill { width: 100%; justify-content: space-between; }
-  .fuss-oben { flex-direction: column; align-items: flex-start; }
-  .fuss-logo { height: 36px; }
+  .fuss-unten { flex-direction: column; align-items: flex-start; }
+  .fuss-logo { height: 32px; }
 }
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { transition: none !important; } }
 @media (forced-colors: active) { .pill, .karte, .tag { border: 2px solid CanvasText; } .akz { background: none; } }
