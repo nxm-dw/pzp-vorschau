@@ -164,7 +164,6 @@ a:hover > .pf { transform: translateX(3px); }
 .held-voll .lead { max-width: 46em; margin: 8px auto 0; }
 .held-voll .ctas { justify-content: center; }
 .held-voll h1 { margin-bottom: 28px; }
-.held-cap { position: relative; margin: 48px auto 0; font-size: .9rem; text-align: right; }
 /* Foto rechts, Text links (Start- und Unterseiten); bis 1100 px Foto über dem Text */
 @media (max-width: 1100px) {
   .held-voll.held-seite { background: var(--dunkel); padding-top: 0; }
@@ -182,7 +181,6 @@ a:hover > .pf { transform: translateX(3px); }
   .held-seite .held-foto::after { background: linear-gradient(90deg, var(--dunkel) 0%, rgba(16,16,17,.8) 8%, rgba(16,16,17,.1) 25%, rgba(16,16,17,.05) 100%), linear-gradient(180deg, rgba(16,16,17,.35) 0%, transparent 25%, transparent 62%, rgba(16,16,17,.92) 100%); }
   .held-seite .held-voll-in { text-align: left; align-items: flex-start; }
   .held-seite .held-voll-in > * { max-width: 600px; }
-  .held-start .held-cap { margin-top: 28px; }
   .held-seite .lead { margin-left: 0; max-width: min(540px, 40vw); }
   .held-seite .ctas { justify-content: flex-start; }
 }
@@ -206,6 +204,7 @@ a:hover > .pf { transform: translateX(3px); }
 .hell .ort::before { background: var(--dunkel); }
 .lead { font-size: clamp(1.12rem, 1rem + .4vw, 1.32rem); line-height: 1.6; }
 .held-leiste { position: relative; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); margin-top: 20px; }
+.held-start .held-leiste { margin-top: 56px; }
 .held-leiste::before { content: ""; position: absolute; inset: 0; border-radius: var(--r); background: rgba(16,16,17,.78); border: 1px solid rgba(255,255,255,.22); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); z-index: -1; }
 .hl-feld { display: flex; flex-direction: column; justify-content: center; gap: 2px; min-height: 92px; padding: 16px 24px; }
 .hl-feld + .hl-feld { border-left: 1px solid rgba(255,255,255,.22); }
@@ -444,7 +443,6 @@ a.hl-w:hover { text-decoration: underline; }
   .held-voll-in { text-align: left; align-items: flex-start; }
   .held-voll .ctas { justify-content: flex-start; }
   .held-voll .lead { margin-left: 0; }
-  .held-cap { text-align: left; margin-top: 32px; }
   .mosaik, .partnerkarten, .kinder, .kinder.n2, .kinder.n4 { grid-template-columns: minmax(0, 1fr); }
   .fuss-bento { grid-template-columns: minmax(0, 1fr); grid-template-rows: none; }
   .fb-gelb, .fb-bild, .fb-info, .fb-links { grid-column: 1; grid-row: auto; }
