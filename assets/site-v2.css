@@ -2,13 +2,14 @@
    - alles dunkel, einzelne Sektionen mit Hintergrundbild in 20 % Deckkraft
    - vertikaler gelber Strich statt Unterstreichung und Marker
    - Boxen eckig und durchscheinend, Leistungskarten als Test mit Glas-Effekt
-   - Akzentwörter in Instrument Serif (kursiv), sonst Inter */
+   - Überschriften und Zahlen in Newsreader (Serife, Akzentwörter kursiv), Fließtext in Inter
+   - Hintergrundbilder stehen fest, der Inhalt scrollt darüber */
 
-@font-face { font-family: "Instrument Serif"; src: url("fonts/instrument-serif-latin-regular.woff2") format("woff2"); font-weight: 400; font-style: normal; font-display: swap; }
-@font-face { font-family: "Instrument Serif"; src: url("fonts/instrument-serif-latin-italic.woff2") format("woff2"); font-weight: 400; font-style: italic; font-display: swap; }
+@font-face { font-family: "Newsreader"; src: url("fonts/newsreader-latin-normal.woff2") format("woff2"); font-weight: 200 800; font-style: normal; font-display: swap; }
+@font-face { font-family: "Newsreader"; src: url("fonts/newsreader-latin-italic.woff2") format("woff2"); font-weight: 200 800; font-style: italic; font-display: swap; }
 
 .v2 {
-  --serif: "Instrument Serif", "Times New Roman", serif;
+  --serif: "Newsreader", "Times New Roman", serif;
   --r-gross: 4px;
   --r: 4px;
   --box: rgba(255,255,255,.06);
@@ -20,21 +21,28 @@
 .v2 .hell { background: var(--dunkel); color: var(--weiss); --fokus: var(--gelb); --trenn: var(--box-rand); }
 .v2 .abschnitt.hell + .abschnitt.dunkel, .v2 .abschnitt.dunkel + .abschnitt.hell { padding-top: 0; }
 
-/* Hintergrundbild einer Sektion: 20 % Deckkraft, oben und unten weich ins Schwarz */
-.v2 [data-bg] { position: relative; isolation: isolate; padding-top: clamp(64px, 7vw, 112px); }
-.v2 [data-bg]::before { content: ""; position: absolute; inset: 0; z-index: -2; background: var(--bg) center / cover no-repeat; opacity: .2; filter: grayscale(1); }
+/* Hintergrundbild einer Sektion: 20 % Deckkraft, steht fest im Fenster (clip-path begrenzt es auf die Sektion,
+   funktioniert anders als background-attachment: fixed auch auf iOS), oben und unten weich ins Schwarz */
+.v2 [data-bg] { position: relative; isolation: isolate; clip-path: inset(0); padding-top: clamp(64px, 7vw, 112px); }
+.v2 [data-bg]::before { content: ""; position: fixed; inset: 0; z-index: -2; background: var(--bg) center / cover no-repeat; opacity: .2; filter: grayscale(1); }
 .v2 [data-bg]::after { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(180deg, var(--dunkel) 0%, transparent 18%, transparent 82%, var(--dunkel) 100%); }
 .v2 [data-bg="linien"]::before { opacity: .18; filter: none; }
 
-/* ------------------------------------------------ Serifen-Akzent */
-.v2 .akz, .v2 .hell .akz, .v2 .karte .akz, .v2 .split-hell .akz {
-  font-family: var(--serif); font-style: italic; font-weight: 400; letter-spacing: -.01em;
-  color: var(--gelb); background: none; padding: 0 .04em 0 0;
+/* ------------------------------------------------ Serifen: Überschriften, Zahlen, Akzentwörter */
+.v2 h1, .v2 h2, .v2 h3, .v2 .zahl, .v2 .frage, .v2 .phase-karte strong, .v2 .w-mehr-t, .v2 .mega-t strong, .v2 .mega-kurz strong, .v2 .menue-liste > li > a {
+  font-family: var(--serif); font-weight: 400; letter-spacing: -.012em; font-optical-sizing: auto;
 }
-.v2 h1 .akz { font-size: 1.12em; line-height: .9; }
-.v2 h2 .akz, .v2 h3 .akz { font-size: 1.1em; }
+.v2 h1 { letter-spacing: -.02em; line-height: 1.04; }
+.v2 h2 { line-height: 1.1; }
+.v2 .karte h3, .v2 .fb-h { letter-spacing: -.015em; }
+/* kleine Kartentitel etwas kräftiger, sonst wirkt die Serife zu dünn */
+.v2 .karte-klein h3, .v2 .wkarte h3, .v2 .zkarte h3, .v2 .phase-karte strong, .v2 .mega-t strong, .v2 .mega-kurz strong { font-weight: 500; }
+.v2 .akz, .v2 .hell .akz, .v2 .karte .akz, .v2 .split-hell .akz {
+  font-family: var(--serif); font-style: italic; font-weight: 400;
+  color: var(--gelb); background: none; padding: 0 .06em 0 0;
+}
 .v2 .split-gelb .akz { color: var(--dunkel); }
-.v2 .zahl { font-family: var(--serif); font-weight: 400; letter-spacing: -.02em; font-size: clamp(3.6rem, 2.4rem + 3.6vw, 6.2rem); }
+.v2 .zahl { letter-spacing: -.02em; font-size: clamp(3.6rem, 2.4rem + 3.6vw, 6.2rem); }
 
 /* ------------------------------------------------ vertikaler Strich statt Unterstreichung */
 .v2 .gross-h2, .v2 .split-panel h2, .v2 .fb-h { border-left: 4px solid var(--gelb); padding-left: .45em; }
@@ -67,8 +75,12 @@
 .v2 .zkarte-gelb, .v2 .karte-gelb, .v2 .dunkel .karte-gelb, .v2 .w-mehr, .v2 .split-gelb .split-panel, .v2 .fb-gelb {
   background: rgba(255,242,0,.88); color: var(--dunkel); border: 0; --fokus: var(--dunkel);
 }
-.v2 .karte p, .v2 .wkarte p, .v2 .zkarte p, .v2 .phase-karte span, .v2 .pkarte-text p { color: var(--grau); }
-.v2 .zkarte-gelb p, .v2 .karte-gelb p { color: var(--dunkel); }
+.v2 .karte p, .v2 .wkarte p, .v2 .zkarte p, .v2 .phase-karte span:not(.phase-nr):not(.eck-pfeil), .v2 .pkarte-text p { color: var(--grau); }
+/* Karten über einem Hintergrund (Linien, Foto): Fläche dichter, damit der Text klar steht */
+.v2 .phase-karte, .v2 [data-bg] :is(.karte-klein, .zkarte:not(.zkarte-gelb), .wkarte, .textkarte) { background: rgba(22,22,24,.86); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); }
+.v2 .phase-karte .phase-nr, .v2 .phase-karte .eck-pfeil { color: var(--dunkel); }
+.v2 .zkarte .zahl { color: var(--weiss); }
+.v2 .zkarte-gelb p, .v2 .karte-gelb p, .v2 .zkarte-gelb .zahl { color: var(--dunkel); }
 .v2 .karte-klein .eck-pfeil, .v2 .karte .eck-pfeil { border-radius: 2px; }
 .v2 .eck-pfeil { border-radius: 2px; }
 .v2 .tag { background: transparent; color: var(--weiss); border-color: rgba(255,255,255,.45); border-radius: 2px; }
