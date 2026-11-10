@@ -2,11 +2,10 @@
    - alles dunkel, einzelne Sektionen mit Hintergrundbild in 20 % Deckkraft
    - vertikaler gelber Strich statt Unterstreichung und Marker
    - Boxen eckig und durchscheinend, Leistungskarten als Test mit Glas-Effekt
-   - Überschriften und Zahlen in Playfair Display (Serife, Akzentwörter kursiv), Fließtext in Inter
+   - Überschriften und Zahlen in Playfair Display (Serife, nicht kursiv, Akzentwörter gelb), Fließtext in Inter
    - Hintergrundbilder stehen fest, der Inhalt scrollt darüber */
 
 @font-face { font-family: "Playfair Display"; src: url("fonts/playfair-display-latin-normal.woff2") format("woff2"); font-weight: 400 900; font-style: normal; font-display: swap; }
-@font-face { font-family: "Playfair Display"; src: url("fonts/playfair-display-latin-italic.woff2") format("woff2"); font-weight: 400 900; font-style: italic; font-display: swap; }
 
 .v2 {
   --serif: "Playfair Display", "Times New Roman", serif;
@@ -38,7 +37,7 @@
 /* kleine Kartentitel etwas kräftiger, sonst wirkt die Serife zu dünn */
 .v2 .karte-klein h3, .v2 .wkarte h3, .v2 .zkarte h3, .v2 .phase-karte strong, .v2 .mega-t strong, .v2 .mega-kurz strong { font-weight: 500; }
 .v2 .akz, .v2 .hell .akz, .v2 .karte .akz, .v2 .split-hell .akz {
-  font-family: var(--serif); font-style: italic; font-weight: 400;
+  font-family: var(--serif); font-style: normal; font-weight: 400;
   color: var(--gelb); background: none; padding: 0 .06em 0 0;
 }
 .v2 .split-gelb .akz { color: var(--dunkel); }
@@ -77,7 +76,7 @@
 }
 .v2 .karte p, .v2 .wkarte p, .v2 .zkarte p, .v2 .phase-karte span:not(.phase-nr):not(.eck-pfeil), .v2 .pkarte-text p { color: var(--grau); }
 /* Karten über einem Hintergrund (Linien, Foto): Fläche dichter, damit der Text klar steht */
-.v2 .phase-karte, .v2 [data-bg] :is(.karte-klein, .zkarte, .wkarte, .textkarte):not([class*="gelb"]) { background: rgba(22,22,24,.86); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); }
+.v2 .phase-karte, .v2 [data-bg] :is(.karte-klein, .zkarte, .wkarte, .textkarte):not([class*="gelb"]) { background: rgba(22,22,24,.58); -webkit-backdrop-filter: blur(5px); backdrop-filter: blur(5px); }
 .v2 .phase-karte .phase-nr, .v2 .phase-karte .eck-pfeil { color: var(--dunkel); }
 .v2 .zkarte .zahl { color: var(--weiss); }
 .v2 .zkarte-gelb p, .v2 .karte-gelb p, .v2 .zkarte-gelb .zahl { color: var(--dunkel); }
