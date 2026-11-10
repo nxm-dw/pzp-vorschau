@@ -1,0 +1,115 @@
+/* PZP · Variante 2 nach dem Kundentermin (10.11.2026), lädt nach site.css und gilt nur für body.v2
+   - alles dunkel, einzelne Sektionen mit Hintergrundbild in 20 % Deckkraft
+   - vertikaler gelber Strich statt Unterstreichung und Marker
+   - Boxen eckig und durchscheinend, Leistungskarten als Test mit Glas-Effekt
+   - Akzentwörter in Instrument Serif (kursiv), sonst Inter */
+
+@font-face { font-family: "Instrument Serif"; src: url("fonts/instrument-serif-latin-regular.woff2") format("woff2"); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: "Instrument Serif"; src: url("fonts/instrument-serif-latin-italic.woff2") format("woff2"); font-weight: 400; font-style: italic; font-display: swap; }
+
+.v2 {
+  --serif: "Instrument Serif", "Times New Roman", serif;
+  --r-gross: 4px;
+  --r: 4px;
+  --box: rgba(255,255,255,.06);
+  --box-rand: rgba(255,255,255,.14);
+  --grau: #c9c9cd;
+}
+
+/* ------------------------------------------------ alles dunkel */
+.v2 .hell { background: var(--dunkel); color: var(--weiss); --fokus: var(--gelb); --trenn: var(--box-rand); }
+.v2 .abschnitt.hell + .abschnitt.dunkel, .v2 .abschnitt.dunkel + .abschnitt.hell { padding-top: 0; }
+
+/* Hintergrundbild einer Sektion: 20 % Deckkraft, oben und unten weich ins Schwarz */
+.v2 [data-bg] { position: relative; isolation: isolate; padding-top: clamp(64px, 7vw, 112px); }
+.v2 [data-bg]::before { content: ""; position: absolute; inset: 0; z-index: -2; background: var(--bg) center / cover no-repeat; opacity: .2; filter: grayscale(1); }
+.v2 [data-bg]::after { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(180deg, var(--dunkel) 0%, transparent 18%, transparent 82%, var(--dunkel) 100%); }
+.v2 [data-bg="linien"]::before { opacity: .18; filter: none; }
+
+/* ------------------------------------------------ Serifen-Akzent */
+.v2 .akz, .v2 .hell .akz, .v2 .karte .akz, .v2 .split-hell .akz {
+  font-family: var(--serif); font-style: italic; font-weight: 400; letter-spacing: -.01em;
+  color: var(--gelb); background: none; padding: 0 .04em 0 0;
+}
+.v2 h1 .akz { font-size: 1.12em; line-height: .9; }
+.v2 h2 .akz, .v2 h3 .akz { font-size: 1.1em; }
+.v2 .split-gelb .akz { color: var(--dunkel); }
+.v2 .zahl { font-family: var(--serif); font-weight: 400; letter-spacing: -.02em; font-size: clamp(3.6rem, 2.4rem + 3.6vw, 6.2rem); }
+
+/* ------------------------------------------------ vertikaler Strich statt Unterstreichung */
+.v2 .gross-h2, .v2 .split-panel h2, .v2 .fb-h { border-left: 4px solid var(--gelb); padding-left: .45em; }
+.v2 .gross-h2.mitte { border-left: 0; padding-left: 0; }
+.v2 .split-gelb .split-panel h2, .v2 .fb-gelb .fb-h { border-left-color: var(--dunkel); }
+.v2 .ort::before, .v2 .hell .ort::before { width: 3px; height: 1.2em; background: var(--gelb); }
+/* Phasen: der Strich steht an der Überschrift, nicht zusätzlich an der Zeile darüber */
+.v2 .phase-kopf .ort { padding-left: calc(4px + .45em * 2.2); }
+.v2 .phase-kopf .ort::before { display: none; }
+.v2 .textlink { border-bottom: 0; border-left: 3px solid var(--gelb); padding: 2px 0 2px 14px; }
+.v2 .hell .textlink { border-left-color: var(--gelb); }
+.v2 .textlink:hover { border-bottom-width: 0; padding-bottom: 2px; border-left-width: 6px; padding-left: 11px; }
+/* Navigation: Strich links statt Linie darunter */
+.v2 .nav > ul > li > a { padding-left: 22px; }
+.v2 .nav > ul > li > a::after { left: 10px; right: auto; top: 50%; bottom: auto; width: 3px; height: 1.1em; transform: translateY(-50%) scaleY(0); transform-origin: center; }
+.v2 .nav > ul > li > a:hover::after, .v2 .nav > ul > li > a[aria-current]::after, .v2 .hat-mega.ist-offen > a::after { transform: translateY(-50%) scaleY(1); }
+/* Menülinks: Strich erscheint links, der Text bleibt stehen (kein Umbruch beim Hover) */
+.v2 .mega-sp ul a { padding-left: 12px; transition: box-shadow .15s; }
+.v2 .mega-sp ul a:hover { text-decoration: none; box-shadow: inset 3px 0 0 var(--gelb); }
+.v2 .fb-links a:hover, .v2 .brot a:hover, .v2 a.hl-w:hover { text-decoration: none; box-shadow: -3px 0 0 var(--gelb); }
+.v2 .kontakt-wege dd a:hover, .v2 .fb-wege a:hover { text-decoration: none; }
+
+/* ------------------------------------------------ Boxen: eckig, durchscheinend */
+.v2 .textkarte, .v2 .zkarte, .v2 .wkarte, .v2 .karte, .v2 .phase-karte, .v2 .dunkel .karte-klein, .v2 .karte-klein,
+.v2 .fb-info, .v2 .fb-links, .v2 .pkarte-text, .v2 .split-hell .split-panel, .v2 .split-dunkel .split-panel {
+  background: var(--box); color: var(--weiss); border: 1px solid var(--box-rand); --fokus: var(--gelb); --trenn: var(--box-rand);
+}
+.v2 .split-dunkel .split-panel, .v2 .split-hell .split-panel { background: rgba(255,255,255,.04); border-left: 0; }
+.v2 .split { border: 0; }
+.v2 .zkarte-gelb, .v2 .karte-gelb, .v2 .dunkel .karte-gelb, .v2 .w-mehr, .v2 .split-gelb .split-panel, .v2 .fb-gelb {
+  background: rgba(255,242,0,.88); color: var(--dunkel); border: 0; --fokus: var(--dunkel);
+}
+.v2 .karte p, .v2 .wkarte p, .v2 .zkarte p, .v2 .phase-karte span, .v2 .pkarte-text p { color: var(--grau); }
+.v2 .zkarte-gelb p, .v2 .karte-gelb p { color: var(--dunkel); }
+.v2 .karte-klein .eck-pfeil, .v2 .karte .eck-pfeil { border-radius: 2px; }
+.v2 .eck-pfeil { border-radius: 2px; }
+.v2 .tag { background: transparent; color: var(--weiss); border-color: rgba(255,255,255,.45); border-radius: 2px; }
+.v2 .tag:hover { background: var(--gelb); color: var(--dunkel); border-color: var(--gelb); }
+.v2 .pill-rand-dunkel { border-color: var(--weiss); color: var(--weiss); }
+.v2 .pill-rand-dunkel .pill-kreis { background: var(--weiss); color: var(--dunkel); }
+.v2 .pill-rand-dunkel:hover { background: var(--weiss); color: var(--dunkel); }
+.v2 .hell .pill-gelb:hover, .v2 .textkarte .pill-gelb:hover { background: var(--weiss); color: var(--dunkel); }
+.v2 .hell .pill-gelb, .v2 .textkarte .pill-gelb { --fokus: var(--weiss); }
+.v2 .w-raute .h { stroke: #232325; }
+.v2 .wkarte:hover .w-raute .g { stroke: var(--weiss); }
+.v2 .aufzaehlung li::before { outline-color: var(--gelb); }
+.v2 .mehr summary::before { background: var(--gelb); color: var(--dunkel); }
+.v2 .phase-nr { background: var(--gelb); color: var(--dunkel); border-radius: 2px; }
+.v2 .karte-link:focus-visible { outline: none; }
+@media (hover: hover) {
+  .v2 .karte:has(.karte-link):hover, .v2 .phase-karte:hover { box-shadow: none; border-color: rgba(255,242,0,.6); }
+}
+
+/* Partnerkarten: Foto bleibt, Namensbox dunkel durchscheinend */
+.v2 .pkarte-text { background: rgba(16,16,17,.72); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); }
+
+/* ------------------------------------------------ Test: Glas-Effekt auf den Leistungskarten */
+.v2 #leistungen .karte {
+  background: linear-gradient(135deg, rgba(255,255,255,.14) 0%, rgba(255,255,255,.05) 45%, rgba(255,255,255,.02) 100%);
+  border: 1px solid rgba(255,255,255,.22);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.35), inset 0 -1px 0 rgba(255,255,255,.06), 0 24px 60px rgba(0,0,0,.45);
+  -webkit-backdrop-filter: blur(22px) saturate(160%); backdrop-filter: blur(22px) saturate(160%);
+}
+@media (hover: hover) {
+  .v2 #leistungen .karte:has(.karte-link):hover { border-color: rgba(255,255,255,.4); box-shadow: inset 0 1px 0 rgba(255,255,255,.45), 0 30px 70px rgba(0,0,0,.55); }
+}
+
+/* ------------------------------------------------ Megamenü dunkel */
+.v2 .mega { background: #151517; color: var(--weiss); border-bottom-color: var(--gelb); --fokus: var(--gelb); }
+.v2 .mega-sp, .v2 .mega-kurz { background: var(--box); border: 1px solid var(--box-rand); }
+.v2 .mega-t span, .v2 .mega-kurz > span:not(.eck-pfeil) { color: var(--grau); }
+.v2 .mega-t:hover, .v2 .mega-kurz:hover { background: var(--gelb); color: var(--dunkel); }
+.v2 .mega-sp ul a { border-top-color: var(--box-rand); }
+.v2 .mega-alle { background: var(--gelb); color: var(--dunkel); }
+.v2 .mega-alle .pf { color: var(--dunkel); }
+.v2 .mega-alle:hover { background: var(--weiss); }
+
+@media (forced-colors: active) { .v2 [data-bg]::before, .v2 [data-bg]::after { display: none; } }
