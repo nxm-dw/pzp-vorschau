@@ -23,8 +23,8 @@
 /* Boxen: weiß, eckig, feiner Rand */
 .v3 [data-bg] :is(.karte, .karte-klein, .wkarte, .zkarte, .textkarte, .phase-karte):not([class*="gelb"]),
 .v3 #leistungen .karte {
-  background: rgba(255,255,255,.78); color: var(--dunkel); border: 1px solid rgba(16,16,17,.1); --trenn: rgba(16,16,17,.12); --fokus: var(--dunkel);
-  box-shadow: none; -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
+  background: rgba(255,255,255,.42); color: var(--dunkel); border: 1px solid rgba(16,16,17,.14); --trenn: rgba(16,16,17,.12); --fokus: var(--dunkel);
+  box-shadow: none; -webkit-backdrop-filter: blur(2px); backdrop-filter: blur(2px);
 }
 .v3 [data-bg] :is(.karte, .wkarte, .phase-karte) p,
 .v3 [data-bg] .phase-karte span:not(.phase-nr):not(.eck-pfeil) { color: var(--grau); }
