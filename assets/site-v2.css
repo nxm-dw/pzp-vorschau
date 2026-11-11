@@ -82,6 +82,16 @@
 .v2 .zkarte-gelb p, .v2 .karte-gelb p, .v2 .zkarte-gelb .zahl { color: var(--dunkel); }
 .v2 .karte-klein .eck-pfeil, .v2 .karte .eck-pfeil { border-radius: 2px; }
 .v2 .eck-pfeil { border-radius: 2px; }
+/* Eckiger Pfeilkasten dreht sich nicht mit, sonst wird er zur Raute und rückt an den Text; nur der Pfeil dreht */
+.v2 .eck-pfeil, .v2 .phase-karte .eck-pfeil,
+.v2 :is(.mega-kurz, .mega-bild, .hl-link, .karte, .w-mehr, .phase-karte):hover .eck-pfeil { transform: none; }
+.v2 .eck-pfeil svg { transition: transform .25s; }
+.v2 .phase-karte .eck-pfeil svg { transform: rotate(90deg); }
+.v2 :is(.mega-kurz, .mega-bild, .hl-link, .w-mehr):hover .eck-pfeil svg { transform: rotate(45deg); }
+@media (hover: hover) {
+  .v2 .karte:hover .eck-pfeil svg { transform: rotate(45deg); }
+  .v2 .phase-karte:hover .eck-pfeil svg { transform: rotate(135deg); }
+}
 .v2 .tag { background: transparent; color: var(--weiss); border-color: rgba(255,255,255,.45); border-radius: 2px; }
 .v2 .tag:hover { background: var(--gelb); color: var(--dunkel); border-color: var(--gelb); }
 .v2 .pill-rand-dunkel { border-color: var(--weiss); color: var(--weiss); }

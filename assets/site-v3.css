@@ -1,15 +1,18 @@
 /* PZP · Variante 3 (11.11.2026): wie Variante 2, lädt nach site-v2.css und gilt nur für body.v3
-   - wo in Variante 2 ein Hintergrundbild liegt ([data-bg]), ist die Sektion hell in Creme, ohne Bild
-   - Boxen dort weiß und eckig, Striche dunkel (Gelb ist auf Creme nicht sichtbar)
+   - wo in Variante 2 ein Hintergrundbild liegt ([data-bg]), ist die Sektion hell in Creme, das Bild liegt schwach darüber
+   - Boxen dort weiß durchscheinend und eckig, Striche dunkel (Gelb ist auf Creme nicht sichtbar)
    - Akzentwörter in einem dunklen Gold, das auf Creme lesbar bleibt (Kontrast 5:1) */
 
 .v3 { --creme: #f4efe4; --gold: #7a6500; }
 
 .v3 [data-bg] {
-  background: var(--creme); color: var(--dunkel); clip-path: none;
+  background: var(--creme); color: var(--dunkel);
   --fokus: var(--dunkel); --trenn: rgba(16,16,17,.14); --grau: #4a4a4f;
 }
-.v3 [data-bg]::before, .v3 [data-bg]::after { display: none; }
+/* Bild wie in Variante 2 fest im Fenster, auf Creme abgedunkelt eingemischt, oben und unten weich in Creme */
+.v3 [data-bg]::before { opacity: .16; mix-blend-mode: multiply; }
+.v3 [data-bg="linien"]::before { filter: invert(1); opacity: .22; }
+.v3 [data-bg]::after { background: linear-gradient(180deg, var(--creme) 0%, transparent 18%, transparent 82%, var(--creme) 100%); }
 
 /* Akzent und Striche */
 .v3 [data-bg] .akz { color: var(--gold); }
@@ -20,8 +23,8 @@
 /* Boxen: weiß, eckig, feiner Rand */
 .v3 [data-bg] :is(.karte, .karte-klein, .wkarte, .zkarte, .textkarte, .phase-karte):not([class*="gelb"]),
 .v3 #leistungen .karte {
-  background: var(--weiss); color: var(--dunkel); border: 1px solid rgba(16,16,17,.1); --trenn: rgba(16,16,17,.12); --fokus: var(--dunkel);
-  box-shadow: none; -webkit-backdrop-filter: none; backdrop-filter: none;
+  background: rgba(255,255,255,.78); color: var(--dunkel); border: 1px solid rgba(16,16,17,.1); --trenn: rgba(16,16,17,.12); --fokus: var(--dunkel);
+  box-shadow: none; -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
 }
 .v3 [data-bg] :is(.karte, .wkarte, .phase-karte) p,
 .v3 [data-bg] .phase-karte span:not(.phase-nr):not(.eck-pfeil) { color: var(--grau); }
