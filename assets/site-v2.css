@@ -91,8 +91,8 @@
 .v2 .hell .pill-gelb, .v2 .textkarte .pill-gelb { --fokus: var(--weiss); }
 .v2 .w-raute .h { stroke: #232325; }
 .v2 .wkarte:hover .w-raute .g { stroke: var(--weiss); }
-.v2 .aufzaehlung li::before { outline-color: var(--gelb); }
-.v2 .mehr summary::before { background: var(--gelb); color: var(--dunkel); }
+.v2 .aufzaehlung li::before { border-color: rgba(255,255,255,.6); }
+.v2 .mehr-icon { background: var(--gelb); color: var(--dunkel); border-radius: 2px; }
 .v2 .phase-nr { background: var(--gelb); color: var(--dunkel); border-radius: 2px; }
 .v2 .karte-link:focus-visible { outline: none; }
 @media (hover: hover) {
