@@ -1,7 +1,7 @@
 /* PZP · Variante 3 (11.11.2026): wie Variante 2, lädt nach site-v2.css und gilt nur für body.v3
    - wo in Variante 2 ein Hintergrundbild liegt ([data-bg]), ist die Sektion hell in Creme, das Bild liegt schwach darüber
    - Boxen dort weiß durchscheinend und eckig, Striche dunkel (Gelb ist auf Creme nicht sichtbar)
-   - Akzentwörter auf Creme dunkel mit gelbem Marker wie in Variante 1 (kein Gold, das kommt in der CI nicht vor) */
+   - Akzentwörter auf Creme schlicht dunkel, ohne Marker oder Unterstreichung (kein Gold, das kommt in der CI nicht vor); markiert wird nur mit dem senkrechten Strich davor */
 
 .v3 { --creme: #f4efe4; }
 
@@ -15,7 +15,7 @@
 .v3 [data-bg]::after { background: linear-gradient(180deg, var(--creme) 0%, transparent 18%, transparent 82%, var(--creme) 100%); }
 
 /* Akzent und Striche */
-.v3 [data-bg] .akz { color: inherit; background: linear-gradient(transparent 62%, var(--gelb) 62%, var(--gelb) 92%, transparent 92%); padding: 0 .06em; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
+.v3 [data-bg] .akz { color: inherit; }
 .v3 [data-bg] .gross-h2, .v3 [data-bg] .split-panel h2 { border-left-color: var(--dunkel); }
 .v3 [data-bg] .ort::before { background: var(--dunkel); }
 .v3 [data-bg] .textlink { border-left-color: var(--dunkel); }
@@ -44,7 +44,7 @@
 /* Kontakt: Textfeld neben dem Foto bleibt dunkel */
 .v3 [data-bg] .split-dunkel .split-panel { background: var(--dunkel); color: var(--weiss); --fokus: var(--gelb); }
 .v3 [data-bg] .split-dunkel .split-panel h2 { border-left-color: var(--gelb); }
-.v3 [data-bg] .split-dunkel .akz { color: var(--gelb); background: none; padding: 0; }
+.v3 [data-bg] .split-dunkel .akz { color: var(--gelb); }
 
 /* Abstand oben, wenn die helle Sektion direkt auf eine dunkle folgt (site.css nimmt ihn bei .hell + .hell weg) */
 .v3 .abschnitt[data-bg]:not([data-bg] + [data-bg]) { padding-top: clamp(64px, 7vw, 112px); }

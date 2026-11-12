@@ -277,6 +277,8 @@ a.hl-w:hover { text-decoration: underline; }
 .stellen { margin: 8px 0; border-top: 2px solid var(--dunkel); }
 .stellen a { display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 16px 0; border-bottom: 2px solid var(--dunkel); text-decoration: none; font-weight: 600; }
 .stellen a > span { transition: transform .2s; }
+.stellen a > span:first-child { min-width: 0; }
+@media (min-width: 401px) { .stellen .mwd { white-space: nowrap; } }
 /* Verschieben statt Einrücken, damit nichts umbricht */
 .stellen a:hover > span { transform: translateX(10px); }
 .kontakt-wege { margin: 8px 0 0; }
@@ -386,7 +388,7 @@ a.hl-w:hover { text-decoration: underline; }
 .text h2 { font-size: 1.4rem; margin-top: 2em; }
 .text a { text-decoration: underline; }
 .text .brot { margin-bottom: 0; }
-.rtext h2 { margin-bottom: .5em; hyphens: auto; overflow-wrap: anywhere; }
+.rtext h2 { margin-bottom: .5em; hyphens: auto; }
 .rtext h3 { font-size: 1.1rem; letter-spacing: 0; margin: 1.6em 0 .4em; }
 .rtext p { margin: 0 0 .4em; overflow-wrap: anywhere; }
 .rtext .rliste { margin: .4em 0 1em; padding-left: 1.2em; list-style: disc; }

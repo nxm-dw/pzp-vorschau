@@ -63,6 +63,14 @@
 .v2 .mega-sp ul a:hover { text-decoration: none; box-shadow: inset 3px 0 0 var(--gelb); }
 .v2 .fb-links a:hover, .v2 .brot a:hover, .v2 a.hl-w:hover { text-decoration: none; box-shadow: -3px 0 0 var(--gelb); }
 .v2 .kontakt-wege dd a:hover, .v2 .fb-wege a:hover { text-decoration: none; }
+/* keine waagerechten Linien unter Text: Stellenliste und Telefon/E-Mail im Fußbereich mit senkrechtem Strich davor */
+.v2 .stellen { border-top: 0; }
+.v2 .stellen li + li { margin-top: 10px; }
+.v2 .stellen a { border-bottom: 0; border-left: 3px solid var(--dunkel); padding: 8px 0 8px 16px; transition: border-left-width .2s, padding-left .2s; }
+.v2 .stellen a:hover { border-left-width: 6px; padding-left: 13px; }
+@media (max-width: 400px) { .v2 .stellen a { gap: 8px; padding-left: 12px; } .v2 .stellen a:hover { padding-left: 9px; } }
+.v2 .fb-wege { display: grid; gap: 14px; }
+.v2 .fb-wege div, .v2 .fb-wege div:last-child { border: 0; border-left: 3px solid var(--dunkel); padding: 2px 0 2px 16px; }
 
 /* ------------------------------------------------ Boxen: eckig, durchscheinend */
 .v2 .textkarte, .v2 .zkarte, .v2 .wkarte, .v2 .karte, .v2 .phase-karte, .v2 .dunkel .karte-klein, .v2 .karte-klein,
